@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "536565053981",
+    "firebase_url": "https://utkansh2020-8f0c1.firebaseio.com",
+    "project_id": "utkansh2020-8f0c1",
+    "storage_bucket": "utkansh2020-8f0c1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:536565053981:android:b4311297858830d87ea4f4",
+        "android_client_info": {
+          "package_name": "com.rocketapp.utkansh20"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "536565053981-orgtq9urq6h6f5n34ikuqe7fkoc7i87p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSiYeZFqhOvFmaItxH-SHIk87ghUVRYUY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "536565053981-orgtq9urq6h6f5n34ikuqe7fkoc7i87p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

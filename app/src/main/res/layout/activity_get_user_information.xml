@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="10"
+                android:background="@color/appBackground"
+                >
+            </LinearLayout>
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                android:src="@drawable/sign_up_background"
+                android:adjustViewBounds="true"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
+            android:src="@drawable/logo"
+            android:adjustViewBounds="true"
+            android:layout_centerInParent="true"
+            android:background="@color/appBackground"
+            />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="bottom|center"
+        android:orientation="vertical"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            >
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:hint="Name"
+                android:padding="10dp"
+                android:fontFamily="@font/verifynum"
+                android:textColor="@color/appBackground"
+                android:textStyle="bold"
+                android:background="@drawable/border_edit_text"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/name"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:hint="College Name"
+                android:padding="10dp"
+                android:fontFamily="@font/verifynum"
+                android:textColor="@color/appBackground"
+                android:textStyle="bold"
+                android:background="@drawable/border_edit_text"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/college_name"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <AutoCompleteTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:hint="Course"
+                    android:padding="10dp"
+                    android:fontFamily="@font/verifynum"
+                    android:textColor="@color/appBackground"
+                    android:textStyle="bold"
+                    android:background="@drawable/border_edit_text"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="10dp"
+                    android:textAlignment="center"
+                    android:id="@+id/courses" />
+
+
+                <AutoCompleteTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:hint="Year"
+                    android:padding="10dp"
+                    android:fontFamily="@font/verifynum"
+                    android:textColor="@color/appBackground"
+                    android:textStyle="bold"
+                    android:background="@drawable/border_edit_text"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:id="@+id/year"/>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <ImageButton
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/next_button"
+            android:backgroundTint="@color/appBackground"
+            android:padding="10dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/next"
+            android:layout_marginBottom="40dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

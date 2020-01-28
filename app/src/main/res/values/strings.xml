@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Utkansh20</string>
+
+    <string-array name="Year">
+        <item>Freshman year</item>
+        <item>2nd year</item>
+        <item>3rd year</item>
+        <item>Final year</item>
+    </string-array>
+
+    <string-array name="Courses">
+        <item>B.Tech</item>
+        <item>M.Tech</item>
+        <item>Ph.D</item>
+        <item>B.Sc</item>
+        <item>M.Sc</item>
+        <item>Law</item>
+        <item>Fine Arts</item>
+        <item>Fashion Design</item>
+        <item>Other</item>
+    </string-array>
+
+</resources>
