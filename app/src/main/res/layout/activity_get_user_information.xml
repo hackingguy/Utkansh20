@@ -25,14 +25,15 @@
                 android:background="@color/appBackground"
                 >
             </LinearLayout>
+
             <ImageView
                 android:id="@+id/imageView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:scaleType="fitXY"
-                android:src="@drawable/sign_up_background"
+                android:layout_weight="1"
                 android:adjustViewBounds="true"
-                android:layout_weight="1" />
+                android:scaleType="fitXY"
+                android:src="@drawable/sign_up_background" />
 
         </LinearLayout>
         <ImageView
@@ -43,6 +44,17 @@
             android:layout_centerInParent="true"
             android:background="@color/appBackground"
             />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:src="@drawable/logo_black"
+            android:paddingTop="10dp" />
+
     </RelativeLayout>
 
     <LinearLayout
@@ -50,8 +62,7 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="bottom|center"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -74,7 +85,7 @@
                 android:layout_marginBottom="10dp"
                 android:id="@+id/name"/>
 
-            <EditText
+            <AutoCompleteTextView
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:hint="College Name"
@@ -123,6 +134,67 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Email"
+                    android:background="@drawable/border_edit_text"
+                    android:fontFamily="@font/verifynum"
+                    android:padding="10dp"
+                    android:inputType="textEmailAddress"
+                    android:layout_weight="1"
+                    android:id="@+id/email"/>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Verify"
+                    android:textAllCaps="false"
+                    android:layout_weight="3"
+                    android:background="@drawable/rounded_corner"
+                    android:backgroundTint="@color/appBackground"
+                    android:textColor="@android:color/white"
+                    android:layout_marginStart="5dp"
+                    android:id="@+id/button_for_email"
+                    android:onClick="verify_email"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:orientation="horizontal">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Phone number"
+                    android:background="@drawable/border_edit_text"
+                    android:fontFamily="@font/verifynum"
+                    android:padding="10dp"
+                    android:inputType="textEmailAddress"
+                    android:layout_weight="1"
+                    android:id="@+id/phoneNumber"/>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Verify"
+                    android:textAllCaps="false"
+                    android:layout_weight="3"
+                    android:background="@drawable/rounded_corner"
+                    android:backgroundTint="@color/appBackground"
+                    android:textColor="@android:color/white"
+                    android:layout_marginStart="5dp"
+                    android:id="@+id/button_for_phone"
+                    android:onClick="verify_phone"/>
+
+            </LinearLayout>
+
         </LinearLayout>
 
         <ImageButton
@@ -133,7 +205,8 @@
             android:padding="10dp"
             android:scaleType="fitXY"
             android:src="@drawable/next"
-            android:layout_marginBottom="40dp"/>
+            android:layout_marginBottom="40dp"
+            android:onClick="informationReceive"/>
 
     </LinearLayout>
 

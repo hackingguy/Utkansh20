@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "536565053981-g8dpbp68hgh88c6gudrri0bf65uu815q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rocketapp.utkansh20",
+            "certificate_hash": "c997e7e86f32d4cb26b7c6cf340cb4187c5bb01d"
+          }
+        },
+        {
           "client_id": "536565053981-juf4qbpke51ucgjcn4ifdo7l9mftlivk.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

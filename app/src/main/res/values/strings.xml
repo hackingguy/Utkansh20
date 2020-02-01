@@ -20,4 +20,8 @@
         <item>Other</item>
     </string-array>
 
+    <string-array name="College">
+        <item>Dr B R Ambedkar National Institute of Technology, Jalandhar</item>
+    </string-array>
+
 </resources>

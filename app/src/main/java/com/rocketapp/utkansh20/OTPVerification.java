@@ -1,6 +1,7 @@
 package com.rocketapp.utkansh20;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.text.Editable;
@@ -21,10 +22,12 @@ import java.util.concurrent.TimeUnit;
 public class OTPVerification {
     private Context context;
     private FirebaseAuth auth;
-    private static String phoneNumber = null;
+    private String phoneNumber = null;
     private String verificationID;
     private EditText one, two, three, four, five, six;
     private Intent intent;
+    private String CODE="000000";
+    private boolean otp_verification_status=false;
 
     OTPVerification(String number, Context context, FirebaseAuth auth, EditText arr[], Intent intent) {
         phoneNumber = number;
@@ -64,6 +67,7 @@ public class OTPVerification {
                 if (!(six.getText().toString().equals("") && five.getText().toString().equals("") && four.getText().toString().equals("") && four.getText().toString().equals("") && three.getText().toString().equals("") && two.getText().toString().equals("") && one.getText().toString().equals(""))) {
                     String code = one.getText().toString() + two.getText().toString() + three.getText().toString() + four.getText().toString() + five.getText().toString() + six.getText().toString();
                     verifyCode(code);
+                    System.out.println("---------------------Calling extra verification  ^^^^^^^^^^^^^^^^^^^^^^");
                 } else {
                     Toast.makeText(context, "Enter Correct OTP", Toast.LENGTH_SHORT).show();
                 }
@@ -83,7 +87,7 @@ public class OTPVerification {
         public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
             String code = phoneAuthCredential.getSmsCode();
             if (code != null) {
-                fillTheAutomaticOTP(code);
+                //System.out.println("---------------------Calling extra verification #############");
                 verifyCode(code);
             }
         }
@@ -96,35 +100,56 @@ public class OTPVerification {
     };
 
     private void verifyCode(String code) {
+
         PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationID, code);
+        CODE=code;
         signInWithCredentials(credential);
     }
 
     private void signInWithCredentials(PhoneAuthCredential credential) {
-        auth.signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    context.startActivity(intent);
-                    Toast.makeText(context, "Successful", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(context, "noop noop", Toast.LENGTH_SHORT).show();
+
+        if(intent!=null){
+            auth.signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        fillTheAutomaticOTP(CODE);
+                        context.startActivity(intent);
+                        Toast.makeText(context, "Successful", Toast.LENGTH_SHORT).show();
+                    } else {
+                        //Toast.makeText(context, "noop noop", Toast.LENGTH_SHORT).show();
+                    }
                 }
-            }
-        });
+            });
+        }
+        else{
+
+            fillTheAutomaticOTP(CODE);
+            Toast.makeText(context, "Verified", Toast.LENGTH_SHORT).show();
+            otp_verification_status=true;
+        }
     }
     private void fillTheAutomaticOTP(String code){
-        System.out.println("Code------------------------------->"+code);
+        //System.out.println("Code------------------------------->"+code);
         try {
-            one.setText(code.charAt(0));
-            two.setText(code.charAt(1));
-            three.setText(code.charAt(2));
-            four.setText(code.charAt(3));
-            five.setText(code.charAt(4));
-            six.setText(code.charAt(5));
+            one.setText(""+code.charAt(0));
+            two.setText(""+code.charAt(1));
+            three.setText(""+code.charAt(2));
+            four.setText(""+code.charAt(3));
+            five.setText(""+code.charAt(4));
+            six.setText(""+code.charAt(5));
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
         catch (Exception e){
             Toast.makeText(context, "Auto-Detection failed!", Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
         }
+    }
+    public boolean checkVerification(){
+        return otp_verification_status;
     }
 }

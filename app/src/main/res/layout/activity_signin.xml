@@ -77,10 +77,11 @@
             android:backgroundTint="@android:color/white"
             android:fontFamily="@font/verifynum"
             android:hint="Mobile Number"
-            android:inputType="number"
+            android:inputType="phone"
             android:maxLength="10"
             android:textStyle="bold"
-            tools:ignore="Autofill,TextFields" />
+            tools:ignore="Autofill,TextFields"
+            android:autofillHints="none" />
 
         <ImageButton
             android:layout_width="45dp"

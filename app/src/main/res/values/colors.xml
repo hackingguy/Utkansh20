@@ -5,5 +5,7 @@
     <color name="colorAccent">#D81B60</color>
 
     <color name="appBackground">#21262c</color>
-    <color name="colorOfNumberSelect">#1d5d96</color>
+    <color name="colorOfNumberSelect">#C14B53AB</color>
+
+    <color name="light_grey">#e4e4e4e4</color>
 </resources>
