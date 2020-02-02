@@ -51,28 +51,30 @@ public class OTPVerification {
                 mCallback
         );
         System.out.println("-----------------------------" + phoneNumber);
-        six.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        if(intent!=null){
+            six.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if (!(six.getText().toString().equals("") && five.getText().toString().equals("") && four.getText().toString().equals("") && four.getText().toString().equals("") && three.getText().toString().equals("") && two.getText().toString().equals("") && one.getText().toString().equals(""))) {
-                    String code = one.getText().toString() + two.getText().toString() + three.getText().toString() + four.getText().toString() + five.getText().toString() + six.getText().toString();
-                    verifyCode(code);
-                    System.out.println("---------------------Calling extra verification  ^^^^^^^^^^^^^^^^^^^^^^");
-                } else {
-                    Toast.makeText(context, "Enter Correct OTP", Toast.LENGTH_SHORT).show();
                 }
-            }
-        });
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    if (!(six.getText().toString().equals("") && five.getText().toString().equals("") && four.getText().toString().equals("") && four.getText().toString().equals("") && three.getText().toString().equals("") && two.getText().toString().equals("") && one.getText().toString().equals(""))) {
+                        String code = one.getText().toString() + two.getText().toString() + three.getText().toString() + four.getText().toString() + five.getText().toString() + six.getText().toString();
+                        verifyCode(code);
+                        System.out.println("---------------------Calling extra verification  ^^^^^^^^^^^^^^^^^^^^^^");
+                    } else {
+                        Toast.makeText(context, "Enter Correct OTP", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
     }
 
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallback = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
