@@ -1,59 +1,42 @@
 package com.rocketapp.utkansh20;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.StrictMode;
 import android.text.InputType;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
+
 import java.util.HashMap;
 import java.util.Map;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-
 public class GetUserInformation extends AppCompatActivity {
 
-    GoogleSignInAccount acct;
-    private static String email="";
-    private static String phoneNumber="";
-    private LinearLayout otp_verification = null;
+    private static String phoneNumber;
     GoogleSignInClient mGoogleSignInClient;
-    private static final int RC_SIGN_IN = 234;
-    private static final int RC_HINT = 432;
     private FirebaseAuth mAuth;
 
 
-    private void getUserForCourses(){
+    private void getUserForCourses() {
         final AutoCompleteTextView branch = findViewById(R.id.courses);
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(
                 this, android.R.layout.simple_list_item_1, getResources()
@@ -77,7 +60,7 @@ public class GetUserInformation extends AppCompatActivity {
             }
         });
 
-        branch.setOnTouchListener(new View.OnTouchListener(){
+        branch.setOnTouchListener(new View.OnTouchListener() {
 
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -89,7 +72,7 @@ public class GetUserInformation extends AppCompatActivity {
         });
     }
 
-    private void getUserForYear(){
+    private void getUserForYear() {
         final AutoCompleteTextView year = findViewById(R.id.year);
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(
                 this, android.R.layout.simple_list_item_1, getResources()
@@ -113,7 +96,7 @@ public class GetUserInformation extends AppCompatActivity {
             }
         });
 
-        year.setOnTouchListener(new View.OnTouchListener(){
+        year.setOnTouchListener(new View.OnTouchListener() {
 
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -125,7 +108,7 @@ public class GetUserInformation extends AppCompatActivity {
         });
     }
 
-    private void getUserForCollege(){
+    private void getUserForCollege() {
         final AutoCompleteTextView college = findViewById(R.id.college_name);
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(
                 this, android.R.layout.simple_list_item_1, getResources()
@@ -149,7 +132,7 @@ public class GetUserInformation extends AppCompatActivity {
             }
         });
 
-        college.setOnTouchListener(new View.OnTouchListener(){
+        college.setOnTouchListener(new View.OnTouchListener() {
 
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -161,64 +144,17 @@ public class GetUserInformation extends AppCompatActivity {
         });
     }
 
-    private void getUserProfilePicture(final String url) {
-        new Handler().post(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    InputStream is = (InputStream) new URL(url).getContent();
-                    Bitmap image = BitmapFactory.decodeStream(is);
-                    is.close();
-                    CircleImageView circleImageView = findViewById(R.id.profile_image);
-                    circleImageView.setImageBitmap(image);
-                } catch(IOException e) {
-                    System.out.println(e);
-                }
-            }
-        });
-    }
-
-    private void setDataFromPhoneNumber(){
-        EditText phone = findViewById(R.id.phoneNumber);
-        phone.setText(phoneNumber);
-        phone.setEnabled(false);
-        Button button_for_phone = findViewById(R.id.button_for_phone);
-        button_for_phone.setText("Verified");
-        button_for_phone.setEnabled(false);
-    }
-
-    private void setDataFromGoogleAccout(){
-        acct = GoogleSignIn.getLastSignedInAccount(this);
-        EditText name = findViewById(R.id.name);
-        name.setText(acct.getDisplayName());
-        getUserProfilePicture(acct.getPhotoUrl().toString());
-        EditText emailTextField = findViewById(R.id.email);
-        emailTextField.setText(acct.getEmail());
-        emailTextField.setEnabled(false);
-        Button button_for_google = findViewById(R.id.button_for_email);
-        button_for_google.setText("Verified");
-        button_for_google.setEnabled(false);
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_user_information);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        phoneNumber = getIntent().getStringExtra("phoneNumber");
+        System.out.println("------------------------------------------->>>>>>>>>" + phoneNumber);
         StrictMode.setThreadPolicy(policy);
         getUserForCourses();
         getUserForYear();
         getUserForCollege();
-        /*email=getIntent().getStringExtra("Email");
-        phoneNumber=getIntent().getStringExtra("Phone Number");
-        FirebaseApp.initializeApp(this);
-        mAuth = FirebaseAuth.getInstance();
-        if(!email.equals("")){
-            setDataFromGoogleAccout();
-        }
-        else{
-            setDataFromPhoneNumber();
-        }*/
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
@@ -226,30 +162,34 @@ public class GetUserInformation extends AppCompatActivity {
         // Build a GoogleSignInClient with the options specified by gso.
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
     }
+
     public void informationReceive(View view) {
+        String uid;
         EditText name = findViewById(R.id.name);
-        EditText college_name=findViewById(R.id.college_name);
+        EditText college_name = findViewById(R.id.college_name);
         AutoCompleteTextView course = findViewById(R.id.courses);
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser User = mAuth.getCurrentUser();
+        if (User != null) {
+            uid = User.getUid();
+        } else {
+            uid = null;
+            Toast.makeText(getApplicationContext(), "Fucked Up", Toast.LENGTH_SHORT).show();
+        }
         AutoCompleteTextView year = findViewById(R.id.year);
-        if(name.getText().toString().equals("")){
-            Toast.makeText(this, "Enter your name", Toast.LENGTH_SHORT).show();
-        }
-        else if(college_name.getText().toString().equals("")){
-            Toast.makeText(this, "Enter your college name", Toast.LENGTH_SHORT).show();
-        }
-        else if(course.getText().toString().equals("")){
-            Toast.makeText(this, "Select a course", Toast.LENGTH_SHORT).show();
-        }
-        else if(year.getText().toString().equals("")){
-            Toast.makeText(this, "Select year", Toast.LENGTH_SHORT).show();
-        }
-        else if(phoneNumber.equals("")){
-            Toast.makeText(this, "Verify your phone number", Toast.LENGTH_SHORT).show();
-        }
-        else if(email.equals("")){
-            Toast.makeText(this, "Verify your email address", Toast.LENGTH_SHORT).show();
-        }
-        else{
+        if (name.getText().toString().equals("")) {
+            name.setError("Enter Name");
+            name.requestFocus();
+        } else if (college_name.getText().toString().equals("")) {
+            college_name.setError("Enter College Name");
+            college_name.requestFocus();
+        } else if (course.getText().toString().equals("")) {
+            course.setError("Choose a Course");
+            course.requestFocus();
+        } else if (year.getText().toString().equals("")) {
+            year.setError("Choose Year");
+            year.requestFocus();
+        } else {
             FirebaseFirestore database = FirebaseFirestore.getInstance();
             // Create a new user with a first and last name
             Map<String, Object> user = new HashMap<>();
@@ -257,96 +197,24 @@ public class GetUserInformation extends AppCompatActivity {
             user.put("college_name", college_name.getText().toString());
             user.put("course", course.getText().toString());
             user.put("year", year.getText().toString());
-            user.put("profile_photo_url", acct.getPhotoUrl().toString());
-            database.collection("users")
-                    .add(user)
-                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            user.put("events", "{}");
+            user.put("phoneNumber", phoneNumber);
+            database.collection("users").document(uid)
+                    .set(user)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
-                        public void onSuccess(DocumentReference documentReference) {
-                            Toast.makeText(GetUserInformation.this, "Welcome", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(GetUserInformation.this, EventCard.class));
+                        public void onSuccess(Void aVoid) {
+                            startActivity(new Intent(GetUserInformation.this, HomeActivity.class));
+                            Toast.makeText(GetUserInformation.this, "Success", Toast.LENGTH_SHORT).show();
+                            finish();
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            e.printStackTrace();
-                            Toast.makeText(GetUserInformation.this, "Please try again", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(GetUserInformation.this, "User Already Exists", Toast.LENGTH_SHORT).show();
                         }
                     });
         }
-    }
-
-    public void verify_email(View view) {
-        //getting the google signin intent
-        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-
-        //starting the activity for result
-        startActivityForResult(signInIntent, RC_SIGN_IN);
-    }
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        //if the requestCode is the Google Sign In code that we defined at starting
-        if (requestCode == RC_SIGN_IN) {
-
-            //Getting the GoogleSignIn Task
-            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            try {
-                //Google Sign In was successful, authenticate with Firebase
-                GoogleSignInAccount account = task.getResult(ApiException.class);
-
-                //storing saved gmail confirmation
-                final ProgressDialog progress = new ProgressDialog(this);
-                progress.setTitle("Signing you in");
-                progress.setMessage("Utkansh team is waiting to receive you");
-                progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-                progress.setCanceledOnTouchOutside(false);
-                progress.show();
-                setDataFromGoogleAccout();
-                progress.cancel();
-
-            } catch (ApiException e) {
-                Toast.makeText(GetUserInformation.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
-    public void verify_phone(View view) {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        // Get the layout inflater
-        LayoutInflater inflater = getLayoutInflater();
-        View otp_view = inflater.inflate(R.layout.otp_dialog, null);
-        // Inflate and set the layout for the dialog
-        // Pass null as the parent view because its going in the
-        // dialog layout
-        builder.setTitle("OTP Verification");
-        builder.setCancelable(false);
-        builder.setView(otp_view)
-                // Add action buttons
-                .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int id) {
-                        Toast.makeText(GetUserInformation.this, "Working on OTP", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(GetUserInformation.this, "Cancelled", Toast.LENGTH_SHORT).show();
-                    }
-                });
-        builder.show();
-
-        final EditText number = findViewById(R.id.phoneNumber);
-        EditText one = otp_view.findViewById(R.id.onePass);
-        EditText two = otp_view.findViewById(R.id.twoPass);
-        EditText three = otp_view.findViewById(R.id.threePass);
-        EditText four = otp_view.findViewById(R.id.fourPass);
-        EditText five = otp_view.findViewById(R.id.fivePass);
-        EditText six = otp_view.findViewById(R.id.sixPass);
-        EditText arr[] = {one, two, three, four, five, six};
-        final OTPVerification otpVerification = new OTPVerification("+91"+number.getText().toString().trim(), this, null, arr, null);
-        otpVerification.sendVerificationCode();
     }
 }

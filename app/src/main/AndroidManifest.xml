@@ -4,9 +4,11 @@
     package="com.rocketapp.utkansh20">
 
     <uses-sdk tools:overrideLibrary="com.google.zxing.client.android" />
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -14,10 +16,13 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".EventCard"></activity>
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".QR_Decode"/>
+        <activity android:name=".Signin" />
+        <activity android:name=".HomeActivity" />
+        <activity android:name=".EventCard" />
         <activity android:name=".GetUserInformation" />
-        <activity android:name=".QRScanner" />
         <activity android:name=".Signin">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

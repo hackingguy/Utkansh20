@@ -45,16 +45,6 @@
             android:background="@color/appBackground"
             />
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/profile_image"
-            android:layout_width="96dp"
-            android:layout_height="96dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerInParent="true"
-            android:src="@drawable/logo_black"
-            android:paddingTop="10dp" />
-
     </RelativeLayout>
 
     <LinearLayout
@@ -134,7 +124,7 @@
 
             </LinearLayout>
 
-            <LinearLayout
+            <!--<LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:orientation="horizontal"
@@ -193,7 +183,7 @@
                     android:id="@+id/button_for_phone"
                     android:onClick="verify_phone"/>
 
-            </LinearLayout>
+            </LinearLayout>-->
 
         </LinearLayout>
 

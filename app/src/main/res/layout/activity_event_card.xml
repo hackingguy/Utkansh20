@@ -4,107 +4,64 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#26282f">
+    android:background="#26282f"
+    tools:context=".EventCard">
 
     <RelativeLayout
-        android:id="@+id/relativeLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="100dp"
-        android:background="@drawable/rounded_corners"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
-
-        <ImageView
-            android:id="@+id/black_logo"
-            android:layout_width="125dp"
-            android:layout_height="125dp"
-            android:layout_margin="10dp"
-            android:src="@drawable/logo_black"
-            android:layout_centerHorizontal="true" />
-
-        <TextView
-            android:id="@+id/event_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/black_logo"
-            android:layout_centerHorizontal="true"
-            android:fontFamily="@font/cinzel"
-            android:text="Welcome To "
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/event_text1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/event_text"
-            android:layout_centerHorizontal="true"
-            android:fontFamily="@font/cinzel"
-            android:text="Utkansh"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:id="@+id/qr_code"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_below="@id/event_text1"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/logo_black" />
-
-        <TextView
-            android:id="@+id/environment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="70dp"
-            android:background="#fffd8d"
-            android:fontFamily="casual"
-            android:gravity="center"
-            android:padding="5dp"
-            android:text="♣ Save Paper, Save Environment"
-            android:textColor="@android:color/holo_green_dark" />
-
-    </RelativeLayout>
-
-    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_weight="1"
-            android:background="@drawable/button_border"
-            android:fontFamily="@font/cinzel"
-            android:text="Share"
-            android:textAllCaps="false"
-            android:onClick="share"/>
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_weight="2"
-            android:background="@drawable/button_border"
-            android:fontFamily="@font/cinzel"
-            android:text="Download"
-            android:textAllCaps="false"
-            android:onClick="download"/>
-    </LinearLayout>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
+        <ImageView
+            android:id="@+id/side_logo"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_margin="20dp"
+            android:src="@drawable/logo" />
+
+        <TextView
+            android:id="@+id/registered"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/cinzel"
+            android:gravity="center"
+            android:text="Registered"
+            android:textColor="#f3f3f4"
+            android:textSize="25sp"
+            android:textStyle="" />
+
+        <TextView
+            android:id="@+id/events"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/registered"
+            android:fontFamily="@font/cinzel"
+            android:gravity="center_horizontal"
+            android:text="Events"
+            android:textColor="#f3f3f4"
+            android:textSize="25sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="2000dp"
+            android:layout_below="@id/side_logo"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/rounded_corners"
+            android:orientation="vertical"
+            android:paddingTop="15dp">
+
+            <ListView
+                android:id="@+id/events_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -39,7 +39,8 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.847" />
+        app:layout_constraintVertical_bias="0.847"
+        android:visibility="gone"/>-
 
     <LinearLayout
         android:id="@+id/number"
@@ -114,14 +115,6 @@
             android:gravity="center"
             android:text="We have sent a 6-digit OTP"
             android:textSize="15sp" />
-        <!---<TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="___  ___  ___  ___"
-            android:fontFamily="@font/verifynum"
-            android:layout_gravity="center"
-            /> By Akash Chhabra-->
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -193,6 +186,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/resend"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
