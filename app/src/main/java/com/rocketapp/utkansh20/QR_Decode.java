@@ -1,59 +1,58 @@
 package com.rocketapp.utkansh20;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.SparseArray;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.zxing.integration.android.IntentIntegrator;
-import com.google.zxing.integration.android.IntentResult;
+import androidx.appcompat.app.AppCompatActivity;
 
-public class QR_Decode extends AppCompatActivity {
+import com.google.android.gms.vision.barcode.Barcode;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+
+import java.util.List;
+
+import info.androidhive.barcode.BarcodeReader;
+
+public class QR_Decode extends AppCompatActivity implements BarcodeReader.BarcodeReaderListener {
+
+    BarcodeReader barcodeReader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qr__decode);
 
-        new IntentIntegrator(this).initiateScan();
+        // get the barcode reader instance
+        barcodeReader = (BarcodeReader) getSupportFragmentManager().findFragmentById(R.id.barcode_scanner);
     }
-
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        IntentResult result =   IntentIntegrator.parseActivityResult(requestCode, resultCode, data);            if (result != null) {
-        if (result.getContents() == null) {
-            Toast.makeText(this,    "Cancelled",Toast.LENGTH_LONG).show();
-        } else {
-            updateText(result.getContents());
-        }
-    } else {
-        super.onActivityResult(requestCode, resultCode, data);
-    }
+    public void onScanned(Barcode barcode) {
+
+        // playing barcode reader beep sound
+        barcodeReader.playBeep();
+
+        // ticket details activity by passing barcode
+
+
+
     }
 
-    private void updateText(String scanCode) {
-        FirebaseFirestore.getInstance().collection("users").document(scanCode).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if(task.isSuccessful()) {
-                    DocumentSnapshot snapshot = task.getResult();
-                    Intent intent = new Intent(QR_Decode.this, QRScan_Result.class);
-                    intent.putExtra("name",snapshot.getString("name"));
-                    intent.putExtra("number",snapshot.getString("phoneNumber"));
-                    System.out.println(snapshot.getString("name")+"----------------here----------------"+snapshot.getString("phoneNumber"));
-                    startActivity(intent);
-                    finish();
-                }
-            }
-        });
+    @Override
+    public void onScannedMultiple(List<Barcode> list) {
+
+    }
+
+    @Override
+    public void onBitmapScanned(SparseArray<Barcode> sparseArray) {
+
+    }
+
+    @Override
+    public void onScanError(String s) {
+        Toast.makeText(getApplicationContext(), "Error occurred while scanning " + s, Toast.LENGTH_SHORT).show();
     }
 }
-
-

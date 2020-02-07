@@ -35,6 +35,10 @@ dependencies {
     implementation 'com.google.zxing:core:3.4.0'
     //Firebase
     implementation 'com.google.firebase:firebase-analytics:17.2.2'
+    //QR Code
+    implementation 'com.google.android.gms:play-services-vision:19.0.0'
+    implementation 'info.androidhive:barcode-reader:1.1.2'
+    implementation 'com.budiyev.android:code-scanner:2.1.0'
     //Play Services
     implementation 'com.google.android.gms:play-services-auth:17.0.0'
     //Firebase Auth

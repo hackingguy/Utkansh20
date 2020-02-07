@@ -18,12 +18,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".QR_Decode"/>
+        <activity android:name=".QR_Decode"></activity>
         <activity android:name=".Signin" />
+        <activity android:name=".QR_Code" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".EventCard" />
         <activity android:name=".GetUserInformation" />
-        <activity android:name=".Signin">
+        <activity
+            android:name=".qr_scanner_2"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
