@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#26282f"
-    tools:context=".QR_Code">
+    tools:context="com.nitj.utkansh20.QR_Code">
 
     <RelativeLayout
         android:id="@+id/relativeLayout"

@@ -1,4 +1,4 @@
-package com.rocketapp.utkansh20;
+package com.nitj.utkansh20;
 
 import android.content.Context;
 
@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-        assertEquals("com.rocketapp.utkansh20", appContext.getPackageName());
+        assertEquals("com.nitj.utkansh20", appContext.getPackageName());
     }
 }

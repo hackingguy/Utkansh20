@@ -1,4 +1,4 @@
-package com.rocketapp.utkansh20;
+package com.nitj.utkansh20;
 
 import android.Manifest;
 import android.content.Context;
@@ -73,7 +73,7 @@ public class QR_Code extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_qrscanner);
+        setContentView(R.layout.activity_qr_code);
         setQRcode();
     }
 
@@ -88,13 +88,12 @@ public class QR_Code extends AppCompatActivity {
     }
 
 
-
-    private File saveBitMap(Context context, View drawView){
-        File pictureFileDir = new File(String.valueOf(Environment.getExternalStorageDirectory())+File.separator+"Utkansh");
+    private File saveBitMap(Context context, View drawView) {
+        File pictureFileDir = new File(String.valueOf(Environment.getExternalStorageDirectory()) + File.separator + "Utkansh");
         pictureFileDir.mkdir();
-        System.out.println("--------------------------------->"+pictureFileDir);
+        System.out.println("--------------------------------->" + pictureFileDir);
         ActivityCompat.requestPermissions(this,
-                new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE},
+                new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE},
                 20);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -114,9 +113,9 @@ public class QR_Code extends AppCompatActivity {
         }
 
         System.out.println("--------------------------------------->Creating file");
-        String filename = pictureFileDir.getPath() +File.separator+ System.currentTimeMillis()+".jpg";
+        String filename = pictureFileDir.getPath() + File.separator + System.currentTimeMillis() + ".jpg";
         File pictureFile = new File(filename);
-        Bitmap bitmap =getBitmapFromView(drawView);
+        Bitmap bitmap = getBitmapFromView(drawView);
         try {
             pictureFile.createNewFile();
             FileOutputStream oStream = new FileOutputStream(pictureFile);
@@ -127,22 +126,23 @@ public class QR_Code extends AppCompatActivity {
             e.printStackTrace();
             Log.i("TAG", "There was an issue saving the image.");
         }
-        scanGallery( context,pictureFile.getAbsolutePath());
+        scanGallery(context, pictureFile.getAbsolutePath());
         return pictureFile;
     }
+
     //create bitmap from view and returns it
     private Bitmap getBitmapFromView(View view) {
         System.out.println("--------------------------------------->Converting to BITMAP");
         //Define a bitmap with the same size as the view
-        Bitmap returnedBitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(),Bitmap.Config.ARGB_8888);
+        Bitmap returnedBitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
         //Bind a canvas to it
         Canvas canvas = new Canvas(returnedBitmap);
         //Get the view's background
-        Drawable bgDrawable =view.getBackground();
-        if (bgDrawable!=null) {
+        Drawable bgDrawable = view.getBackground();
+        if (bgDrawable != null) {
             //has background drawable, then draw it on the canvas
             bgDrawable.draw(canvas);
-        }   else{
+        } else {
             //does not have background drawable, then draw white background on the canvas
             canvas.drawColor(Color.WHITE);
         }
@@ -151,10 +151,11 @@ public class QR_Code extends AppCompatActivity {
         //return the bitmap
         return returnedBitmap;
     }
+
     // used for scanning gallery
     private void scanGallery(Context cntx, String path) {
         try {
-            MediaScannerConnection.scanFile(cntx, new String[] { path },null, new MediaScannerConnection.OnScanCompletedListener() {
+            MediaScannerConnection.scanFile(cntx, new String[]{path}, null, new MediaScannerConnection.OnScanCompletedListener() {
                 public void onScanCompleted(String path, Uri uri) {
                 }
             });

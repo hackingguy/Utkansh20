@@ -1,4 +1,4 @@
-package com.rocketapp.utkansh20;
+package com.nitj.utkansh20;
 
 import org.junit.Test;
 

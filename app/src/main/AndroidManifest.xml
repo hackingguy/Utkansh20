@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.rocketapp.utkansh20">
+    package="com.nitj.utkansh20">
 
     <uses-sdk tools:overrideLibrary="com.google.zxing.client.android" />
 
@@ -18,14 +18,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".QR_Decode"></activity>
-        <activity android:name=".Signin" />
+        <activity android:name=".QR_Scanner" />
         <activity android:name=".QR_Code" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".EventCard" />
         <activity android:name=".GetUserInformation" />
         <activity
-            android:name=".qr_scanner_2"
+            android:name=".Signin"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,4 +1,4 @@
-package com.rocketapp.utkansh20;
+package com.nitj.utkansh20;
 
 import android.app.Activity;
 import android.content.Context;
@@ -132,7 +132,7 @@ public class OTPVerification {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
                         fillTheAutomaticOTP(CODE);
-                        intent.putExtra("phoneNumber",phoneNumber);
+                        intent.putExtra("phoneNumber", phoneNumber);
                         context.startActivity(intent);
                         Toast.makeText(context, "Successful", Toast.LENGTH_SHORT).show();
                     } else {

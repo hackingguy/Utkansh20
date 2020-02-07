@@ -1,4 +1,4 @@
-package com.rocketapp.utkansh20;
+package com.nitj.utkansh20;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -38,6 +38,13 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(HomeActivity.this, QR_Code.class));
+            }
+        });
+        Button b2 = findViewById(R.id.button3);
+        b2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomeActivity.this,QR_Scanner.class));
             }
         });
     }

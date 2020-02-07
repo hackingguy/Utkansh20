@@ -1,4 +1,4 @@
-package com.rocketapp.utkansh20;
+package com.nitj.utkansh20;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -292,7 +292,7 @@ public class Signin extends AppCompatActivity {
         FirebaseAuth.getInstance().signOut();
         if (FirebaseAuth.getInstance().getCurrentUser() != null) {
             System.out.println(FirebaseAuth.getInstance().getCurrentUser().getUid());
-            setContentView(R.layout.activity_signin2);
+            setContentView(R.layout.activity_signin);
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -303,7 +303,7 @@ public class Signin extends AppCompatActivity {
             }, 4000);
         } else {
 
-            setContentView(R.layout.activity_signin);
+            setContentView(R.layout.activity_signup);
             showNumbers();
             FirebaseApp.initializeApp(this);
             mAuth = FirebaseAuth.getInstance();
